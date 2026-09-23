@@ -1,4 +1,6 @@
-﻿namespace TinyRailCars
+﻿using TinyRailCars.Models;
+
+namespace TinyRailCars.ImportAndExport
 {
     public class TrainBuildData
     {
@@ -6,8 +8,8 @@
         public string Names { get; private set; }
 
         public float Weight { get; set; } = 0;
-        public int Passengers { get; set; } = 0;
         public int Cargo { get; set; } = 0;
+        public int Passengers { get; set; } = 0;
         public int Food { get; set; } = 0;
         public int Comfort { get; set; } = 0;
         public int Entertainment { get; set; } = 0;

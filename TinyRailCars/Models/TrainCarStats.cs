@@ -1,17 +1,17 @@
-﻿namespace TinyRailCars
+﻿namespace TinyRailCars.Models
 {
     public class TrainCarStats
     {
         public float Weight { get; set; } = 0;
-        public int Passengers { get; set; } = 0;
         public int Cargo { get; set; } = 0;
+        public int Passengers { get; set; } = 0;
         public int Food { get; set; } = 0;
         public int Comfort { get; set; } = 0;
         public int Entertainment { get; set; } = 0;
         public int Facilities { get; set; } = 0;
 
-        public int Total => Passengers + Cargo + Food + Comfort + Entertainment + Facilities;
-        public float Avg => (float)Total / 6;
+        public int ScoreStats => Food + Comfort + Entertainment + Facilities;
+        public int ScoreEffect => ScoreStats - 4 * Passengers;
 
         public void Add(TrainCarStats stats)
         {

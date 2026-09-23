@@ -1,4 +1,4 @@
-﻿namespace TinyRailCars
+﻿namespace TinyRailCars.ImportAndExport
 {
     public class TrainCarImport
     {

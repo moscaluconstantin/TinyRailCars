@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using TinyRailCars.ImportAndExport;
+using TinyRailCars.Services;
 
 namespace TinyRailCars
 {
@@ -6,26 +8,33 @@ namespace TinyRailCars
     {
         static void Main(string[] args)
         {
-            int[] ownedCars = [2, 4, 5, 6, 7, 12, 14, 15, 16, 17, 18, 21, 25, 27, 30, 31, 32, 33, 35, 37, 42, 44, 63, 64, 71, 73, 135];
+            int[] ownedCars = [2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38, 39, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 62, 63, 64, 65, 66, 68, 70, 71, 73, 75, 81, 84, 86, 87, 90, 93, 95, 96, 98, 104, 105, 123, 131, 133, 135, 137];
             var cars = TrainCarFactory.BuildCars()
-                .Where(x => ownedCars.Contains(x.Number))
+                .Where(x => ownedCars.Contains(x.Number) && x.GetStats().ScoreEffect >= 0 && x.GetStats().ScoreStats > 0)
                 .OrderBy(x => x.Number)
                 .ToList();
+
+            //foreach (var car in cars)
+            //{
+            //    Console.WriteLine(car);
+            //}
 
             var back = new BackTracker();
 
             Console.WriteLine("Starting");
 
-            var combinations = back.Run(cars, 11);
+            var combinations = back.Run(cars, 11)
+                .OrderByDescending(x => x.Score)
+                .ToList();
 
             Console.WriteLine($"Found {combinations.Count} combinations");
 
-            Console.WriteLine("Exporting");
+            //Console.WriteLine("Exporting");
 
-            var data = combinations.Select(x => new TrainBuildData(x)).ToList();
-            ExportToCsv(data, "builds.csv");
+            //var data = combinations.Select(x => new TrainBuildData(x)).ToList();
+            //ExportToCsv(data, "builds.csv");
 
-            Console.WriteLine("Done");
+            //Console.WriteLine("Done");
 
             Console.ReadKey();
         }

@@ -10,6 +10,7 @@ namespace TinyRailCars.ImportAndExport
         public float Weight { get; set; } = 0;
         public int Cargo { get; set; } = 0;
         public int Passengers { get; set; } = 0;
+        public float Score { get; set; } = 0;
         public int Food { get; set; } = 0;
         public int Comfort { get; set; } = 0;
         public int Entertainment { get; set; } = 0;
@@ -32,6 +33,20 @@ namespace TinyRailCars.ImportAndExport
             Comfort = stats.Comfort;
             Entertainment = stats.Entertainment;
             Facilities = stats.Facilities;
+        }
+
+        public TrainBuildData(Train train)
+        {
+            Numbers = string.Join(" | ", train.Cars.Select(x => x.Number));
+            Names = string.Join(" | ", train.Cars.Select(x => x.Name));
+            Weight = train.Stats.Weight;
+            Passengers = train.Stats.Passengers;
+            Score = train.Score;
+            Cargo = train.Stats.Cargo;
+            Food = train.Stats.Food;
+            Comfort = train.Stats.Comfort;
+            Entertainment = train.Stats.Entertainment;
+            Facilities = train.Stats.Facilities;
         }
     }
 }
